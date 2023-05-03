@@ -1,0 +1,38 @@
+.bg-white{
+    background-color: white;
+}
+
+.signIn{
+    color: #03c5cc;
+}
+
+.signUp{
+    color: #6c757d;
+}
+
+.text-black{
+    color: black;
+}
+
+.buttons{
+    background-color: #f8fafb;
+}
+
+.border-color{
+    border-color: #03c5cc;
+    border-bottom-width: .05rem;
+}
+
+.link-color{
+    color: #03c5cc;
+    font-size: smaller;
+}
+
+.button-color{
+    /* background-color: #03c5cc; */
+    color: white;
+}
+
+input:focus{
+    outline: none;
+}
