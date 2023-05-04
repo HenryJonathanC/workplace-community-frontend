@@ -19,6 +19,9 @@
 }
 
 .border-color{
+    border-top: none;
+    border-left: none;
+    border-right: none;
     border-color: #03c5cc;
     border-bottom-width: .05rem;
 }
@@ -33,6 +36,6 @@
     color: white;
 }
 
-input:focus{
+.border-color:focus{
     outline: none;
 }

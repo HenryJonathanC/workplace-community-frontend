@@ -1,3 +1,5 @@
+import { Input, Space } from 'antd'
+import { EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
 import React, { useState } from 'react'
 
 const User = () => {
@@ -17,6 +19,13 @@ const User = () => {
             <input value={username} onChange={e=> setUsername(e.target.value)} className='mx-12 border-color font-light text-xm px-2' name='username' type='text' placeholder='Your pseudonym' />
             <label className='mx-12 mt-5 self-start font-light text-base' htmlFor='password'>Password</label>
             <input value={password} onChange={e=> setPassword(e.target.value)} className='mx-12 border-color font-light text-xm px-2' name='password' type='password' placeholder='*****' />
+            {/* <Space >
+              <Input.Password
+                className='mx-12 border-color font-light text-xm px-2'
+                placeholder="input password"
+                iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+              />
+            </Space> */}
             <a href='#' className='mx-12 my-7 self-start cursor-pointer underline link-color'>Forgot password?</a>
             <button className='mx-12 py-2 rounded-lg bg-gradient-to-r from-signInActive to-buttonRight cursor-pointer button-color' type='submit'>NEXT</button>
         </form>
