@@ -26,6 +26,22 @@
     border-bottom-width: .05rem;
 }
 
+.border-post{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: rgb(94, 94, 94);
+    border-bottom-width: .01rem;
+}
+
+.border_otp{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: #03c5cc;
+    border-bottom-width: .05rem;
+}
+
 .link-color{
     color: #03c5cc;
     font-size: smaller;
@@ -37,5 +53,9 @@
 }
 
 .border-color:focus{
+    outline: none;
+}
+
+.border-post:focus{
     outline: none;
 }
