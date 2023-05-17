@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {  Button, Dropdown, Modal, Space, Tabs} from 'antd';
 // import { useSelector } from 'react-redux';
 import Polls from './Polls';
@@ -6,11 +6,13 @@ import Posts from './Posts';
 import CreatePost from './post/CreatePost';
 import CreatePoll from './post/CreatePoll';
 import CreateInitative from './post/CreateInitative';
+import axios from 'axios';
 
 
 const MyFeed = () => {
   // const userData = useSelector(state=>state.userData.user)
   const [isModalOpen1, setIsModalOpen1] = useState(false);
+  const [postData, setPostData] = useState();
 
   
   const items = [
@@ -57,19 +59,26 @@ const MyFeed = () => {
     {
       key: '1',
       label: `Posts`,
-      children: <CreatePost />,
+      children: <CreatePost handleCancel1={handleCancel1} />,
     },
     {
       key: '2',
       label: `Polls`,
-      children: <CreatePoll />,
+      children: <CreatePoll handleCancel1={handleCancel1} />,
     },
     {
       key: '3',
       label: `Initatives`,
-      children: <CreateInitative />,
+      children: <CreateInitative handleCancel1={handleCancel1} />,
     },
   ];
+
+  useEffect(()=>{
+    axios.get('http://localhost:3001/posts')
+    .then(res=>{
+      
+    })
+  }, [])
 
   return (
     <div style={{flex: .45}} className='ml-8 mt-16'>

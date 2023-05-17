@@ -1,15 +1,62 @@
 import {  useSelector } from 'react-redux';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { Collapse, Modal, theme } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 const { Panel } = Collapse;
 
 
-const RightNavBar = () => {
+const RightNavBar = ({flag}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalOpen1, setIsModalOpen1] = useState(false);
     const [isModalOpen2, setIsModalOpen2] = useState(false);
     const userData = useSelector(state=>state.userData.user)
+    const [year, setYear]= useState()
+    const [month, setMonth]= useState()
+
+    useEffect(()=>{
+        const date=userData.createdAt.slice(0,7).split('-')
+        setYear(date[0])
+        switch (date[1]) {
+            case '01':
+                setMonth('January')
+                break;
+            case '02':
+                setMonth('February')
+                break;
+            case '03':
+                setMonth('March')
+                break;
+            case '04':
+                setMonth('April')
+                break;
+            case '05':
+                setMonth('May')
+                break;
+            case '06':
+                setMonth('June')
+                break;
+            case '07':
+                setMonth('July')
+                break;
+            case '08':
+                setMonth('August')
+                break;
+            case '09':
+                setMonth('September')
+                break;
+            case '10':
+                setMonth('October')
+                break;
+            case '11':
+                setMonth('November')
+                break;
+            case '12':
+                setMonth('December')
+                break;
+            default:
+                break;
+        }
+      }, [userData.updatedAt])
 
 
     const showModal = () => {
@@ -63,13 +110,14 @@ const RightNavBar = () => {
                 <h1 className='text-lg font-bold'>soombo</h1>
             </div>
         </div>
-        <div style={{backgroundColor: 'white'}} className='shadow mr-20 mt-5 p-5 rounded-md h-72 mb-10'>
+        {flag != 'Profile' && 
+            <div style={{backgroundColor: 'white'}} className='shadow mr-20 mt-5 p-5 rounded-md h-72 mb-10'>
             <h1 className='text-start uppercase text-xl mb-3'>My profile</h1>
             <div className='flex'>
                 <img src={userData.imgUrl} alt='' className='mr-2 w-20' />
                 <div className='flex flex-col'>
                     <h1 className='text-start font-medium text-xl'>{userData.username}</h1>
-                    <p className='text-xs text-start mt-1'>Joined May 2023</p>
+                    <p className='text-xs text-start mt-1'>Joined {month} {year}</p>
                 </div>
             </div>
             <p className='text-start mt-3 mb-4'>Hello this is me!</p>
@@ -113,6 +161,8 @@ const RightNavBar = () => {
                 </div>
             </div>
         </div>
+        }
+        
         <div className='shadow mr-20 mt-5 p-5 mb-5 rounded-md bg-gradient-to-r from-signInActive to-rightBetween'>
             <h1 style={{color: 'white'}} className='bg-black text-start text-xl mb-2'>About</h1>
             <p style={{color: 'white'}} className='text-start' >Loominate is a place to be your magical self. Ask those silly questions, seek support for your struggles, join moonshot ideas and be the changemaker!</p>

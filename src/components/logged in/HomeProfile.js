@@ -12,7 +12,7 @@ const HomeProfile = () => {
         <Header />
         <LeftNavBar flag={flag} />
         <MyProfile />
-        <RightNavBar />
+        <RightNavBar flag={flag} />
     </div>
   )
 }

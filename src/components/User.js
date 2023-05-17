@@ -36,7 +36,7 @@ const User = () => {
     <>
         <h1 className='text-black mb-5 pt-9 font-semibold'>soombo Coworker's Community</h1>
         <form onSubmit={handleSubmit} className='flex flex-col mb-8'>
-            <label className='mx-12 self-start font-light text-base' htmlFor='username'>Username</label>
+            <label className='mx-12 self-start font-light text-base' htmlFor='username'>Email ID</label>
             <input value={username} required onChange={e=> setUsername(e.target.value)} className='mx-12 border-color font-light text-xm px-2' name='username' type='text' placeholder='Your pseudonym' />
             <label className='mx-12 mt-5 self-start font-light text-base' htmlFor='password'>Password</label>
             <input value={password} required onChange={e=> setPassword(e.target.value)} className='mx-12 border-color font-light text-xm px-2' name='password' type='password' placeholder='*****' />

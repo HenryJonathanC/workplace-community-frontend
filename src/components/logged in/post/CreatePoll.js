@@ -3,12 +3,19 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 // import { DownOutlined } from '@ant-design/icons';
 
-const CreatePoll = () => {
+const CreatePoll = ({ handleCancel1 }) => {
     const userData = useSelector(state=>state.userData.user)
     const [image, setImage] = useState(null)
     const [isAddLink, setIsAddLink]= useState(false)
     const [isAddVideo, setIsAddVideo]= useState(false)
     const [val,setVal]=useState([]);
+
+    const [publisher, setPublisher] = useState(`Publish as ${userData.username}`)
+    const [question, setQuestion] = useState('')
+    const [hashtags, setHashtags] = useState('')
+    const [link, setLink] = useState('')
+    const [videoLink, setVideoLink] = useState('')
+    const [category, setCategory] = useState('Select a category')
   
     const handleClick = () => {
       document.getElementById('upload1').click();
@@ -54,7 +61,7 @@ const lists = [ 'Advice Needed', 'Asking For A Colleague..', 'Ask Me Anything', 
   return (
     <>
         <div className='mb-5 flex justify-between'>
-            <h1 className='text-2xl font-medium'>Create Post</h1>
+            <h1 className='text-2xl font-medium'>Create a Poll</h1>
             {/* <Dropdown
                 menu={{
                 items,
@@ -71,14 +78,14 @@ const lists = [ 'Advice Needed', 'Asking For A Colleague..', 'Ask Me Anything', 
                     <DownOutlined />
                 </p>
             </Dropdown> */}
-            <Select defaultValue={items[0].label} bordered={false} className='border-b' style={{width: '15rem', borderBottomWidth: '.05rem'}} placeholder='Select a category'>
+            <Select value={publisher} onChange={val=>setPublisher(val)} defaultValue={items[0].label} bordered={false} className='border-b' style={{width: '15rem', borderBottomWidth: '.05rem'}} placeholder='Select a category'>
               {items.map((item)=>{
                 return <Select.Option style={{width: 'fit-content', color: '#03c5cc'}} key={item.key}>{item.label}</Select.Option>
               })}
             </Select>
           </div>
           <form>
-            <input className=' mt-3 mb-7 border-post font-normal px-2 w-full' type='text' placeholder='Ask a question...' />
+            <input value={question} onChange={e=>setQuestion(e.target.value)} className=' mt-3 mb-7 border-post font-normal px-2 w-full' type='text' placeholder='Ask a question...' />
             <div onClick={handleAdd} className='flex cursor-pointer'>
                 <svg className='w-5' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus"><g data-name="Layer 2"><g data-name="plus"><rect width="24" height="24" opacity="0" transform="rotate(180 12 12)"></rect><path fill='#03c5cc' d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2z"></path></g></g></svg>
                 <p style={{color: '#03c5cc'}} className='ml-1 font-medium'>Add Answer Choice</p>
@@ -91,13 +98,13 @@ const lists = [ 'Advice Needed', 'Asking For A Colleague..', 'Ask Me Anything', 
                     </div>
                 )
             })}
-            <input style={{color: '#ff2692'}} className=' mt-3 mb-7 border-post font-normal px-2 w-full' type='text' placeholder='Your hashtags go here' />
+            <input value={hashtags} onChange={e=>setHashtags(e.target.value)} style={{color: '#ff2692'}} className=' mt-3 mb-7 border-post font-normal px-2 w-full' type='text' placeholder='Your hashtags go here' />
             
             {isAddLink && 
-                <input className=' mt-3 mb-7 border-post font-normal px-2 w-full' type='text' placeholder='Add Link' />
+                <input value={link} onChange={e=>setLink(e.target.value)} className=' mt-3 mb-7 border-post font-normal px-2 w-full' type='text' placeholder='Add Link' />
             }
             {isAddVideo &&
-                <input className=' mt-3 mb-7 border-post font-normal px-2 w-full' type='text' placeholder='Add Video Link' />
+                <input value={videoLink} onChange={e=>setVideoLink(e.target.value)} className=' mt-3 mb-7 border-post font-normal px-2 w-full' type='text' placeholder='Add Video Link' />
             }
             {/* <Dropdown
                 menu={{
@@ -112,7 +119,7 @@ const lists = [ 'Advice Needed', 'Asking For A Colleague..', 'Ask Me Anything', 
                     <DownOutlined />
                 </p>
             </Dropdown> */}
-            <Select bordered={false} className='polldrop border-2 rounded-2xl' style={{width: '12rem', color: '#03c5cc'}} placeholder='Select a category'>
+            <Select value={category} onChange={val=>setCategory(val)} bordered={false} className='polldrop border-2 rounded-2xl' style={{width: '12rem', color: '#03c5cc'}} placeholder='Select a category'>
               {lists.map((item, i)=>{
                 return <Select.Option style={{width: 'fit-content', color: '#03c5cc'}} key={i}>{item}</Select.Option>
               })}
