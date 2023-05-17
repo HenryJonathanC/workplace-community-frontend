@@ -41,7 +41,7 @@ return (
                 </div>
             </Link>
             <Link to='/my-profile'>
-                <div id='profile' className='flex mb-3 w-52 py-1 pl-2 rounded-md'>
+                <div id='profile' className='flex w-52 py-1 pl-2 rounded-md'>
                     <img className='w-4 mr-3 cursor-pointer' src='https://www.svgrepo.com/show/512729/profile-round-1342.svg' alt='' />
                     <h1 id='profile-text' className='text-xl uppercase cursor-pointer'>My Profile</h1>
                 </div>

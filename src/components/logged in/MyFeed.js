@@ -76,8 +76,10 @@ const MyFeed = () => {
   useEffect(()=>{
     axios.get('http://localhost:3001/posts')
     .then(res=>{
-      
+      setPostData(res.data)
+      // console.log(postData);
     })
+    .catch(err=>console.log(err))
   }, [])
 
   return (
@@ -105,8 +107,14 @@ const MyFeed = () => {
         </Dropdown>
         </Space>
       </div>
+      {/* <Posts /> */}
+      {postData?.map(post=>{
+        return (
+          <Posts key={post._id} post={post} />
+        )
+      })
+      }
       <Polls />
-      <Posts />
     </div>
   )
 }

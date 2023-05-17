@@ -1,13 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {  Avatar, Dropdown, Input, Space, Button } from 'antd';
 import { SendOutlined } from '@ant-design/icons'
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 
-const Posts = () => {
+const Posts = ({post}) => {
 
-  const userData = useSelector(state=>state.userData.user)
+  const loggedInUserData = useSelector(state=>state.userData.user)
+  const [postUser, setPostUser]= useState()
 
+  useEffect(()=>{
+    post.userId !== 'null' ? (
+      axios.post('http://localhost:3001/auth/postUser', {
+        "_id" : `${post.userId}`
+      })
+      .then(res=>{setPostUser(res.data)})
+      .catch(err=>console.log(err))
+    ) : (
+      setPostUser({
+        username: "Anonymous User",
+        imgUrl : 'https://img.freepik.com/free-icon/user_318-159711.jpg'
+      })
+    )
+  }, [])
 
     const items1 = [
         {
@@ -38,12 +54,12 @@ const Posts = () => {
           onClick={onclick}
           className="text-xs pr-1 "
             style={{
+              color: 'white',
               borderRadius:"5rem",
               backgroundColor:"#198754",
               borderColor: "#198754",
-              color: "white"
             }}
-        >POST <SendOutlined  className="mb-" /> </Button>
+        >POST <SendOutlined /> </Button>
       );
     
       const onClick = e =>{
@@ -52,18 +68,19 @@ const Posts = () => {
   return (
     <div style={{backgroundColor: 'white'}} className='flex flex-col items-start mt-5 p-5 mb-5 rounded-md shadow'>
         <div className='flex w-full justify-between'>
-          <button className=' text-start cursor-pointer m-1 mb-2 text-xs font-light p-1 px-2 rounded categories-btn'>Advice Needed</button>
+          <button className=' text-start cursor-pointer m-1 mb-2 text-xs font-light p-1 px-2 rounded categories-btn'>{post.category}</button>
           <svg className='w-6 cursor-pointer' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  id="ellipsis-v"><path fill="none" stroke='black' d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"></path></svg>
         </div>
         <div className='flex items-center'>
           {/* <svg style={{backgroundColor: ''}} className='w-10 mr-2 cursor-pointer rounded-full p-0' xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" id="user-circle"><path fill="black" stroke='white' d="M12,2A10,10,0,0,0,4.65,18.76h0a10,10,0,0,0,14.7,0h0A10,10,0,0,0,12,2Zm0,18a8,8,0,0,1-5.55-2.25,6,6,0,0,1,11.1,0A8,8,0,0,1,12,20ZM10,10a2,2,0,1,1,2,2A2,2,0,0,1,10,10Zm8.91,6A8,8,0,0,0,15,12.62a4,4,0,1,0-6,0A8,8,0,0,0,5.09,16,7.92,7.92,0,0,1,4,12a8,8,0,0,1,16,0A7.92,7.92,0,0,1,18.91,16Z"></path></svg> */}
-          <img className='w-12 h-12 mr-3' src={userData.imgUrl} alt=''/>
-          <p>{userData.username}</p>
-          <p style={{color: '#ff2692'}} className='text-xs ml-4 border text-center px-2 rounded h-5 '>You</p>
+          <img id='propic' className='w-12 h-12 mr-3' src={postUser?.imgUrl} alt=''/>
+          <p>{postUser?.username}</p>
+          {postUser?._id=== loggedInUserData._id && <p style={{color: '#ff2692'}} className='text-xs ml-4 border text-center px-2 rounded h-5 '>You</p> } 
+          
         </div>
-        <h1 className='mt-2 text-lg mb-5'>First Post</h1>
-        <p>Just exploring...</p>
-        <p style={{color: ' #ff2692'}} className='mt-3'>#firstPost</p>
+        <h1 className='mt-2 text-lg mb-5'>{post.title}</h1>
+        <p>{post.body}</p>
+        <p style={{color: ' #ff2692'}} className='mt-3'>#{post.hashtags}</p>
         <div className='flex mt-3'>
           <svg className='w-5 mr-1 cursor-pointer' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="thumbs-up"><path fill="black" d="M21.3,10.08A3,3,0,0,0,19,9H14.44L15,7.57A4.13,4.13,0,0,0,11.11,2a1,1,0,0,0-.91.59L7.35,9H5a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17.73a3,3,0,0,0,2.95-2.46l1.27-7A3,3,0,0,0,21.3,10.08ZM7,20H5a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H7Zm13-7.82-1.27,7a1,1,0,0,1-1,.82H9V10.21l2.72-6.12A2.11,2.11,0,0,1,13.1,6.87L12.57,8.3A2,2,0,0,0,14.44,11H19a1,1,0,0,1,.77.36A1,1,0,0,1,20,12.18Z"></path></svg>
           <p className='mr-4'>0</p>
@@ -73,9 +90,9 @@ const Posts = () => {
           <p>0</p>
         </div>
         <div className='mt-3 flex items-center w-full'>
-          <img className='w-9 mr-3' src={userData.imgUrl} alt=''/>
+          <img className='w-9 mr-3' src={loggedInUserData.imgUrl} alt=''/>
           <Input
-            placeholder={'Comment as '+ userData.username}
+            placeholder={'Comment as '+ loggedInUserData.username}
             enterbutton="Search"
             size="large"
             suffix={suffix}

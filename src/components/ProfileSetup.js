@@ -21,6 +21,14 @@ const ProfileSetup = () => {
         setIsModalOpen1(false);
     }
 
+    const handleClick = (e) =>{
+        e.target.style.border == ".2rem solid rgba(52, 177, 235, 0.4)" ? (
+            e.target.style.border = "0"
+            ) : (
+                e.target.style.border = ".2rem solid rgba(52, 177, 235, 0.4)" 
+                )
+    }
+
     const handleSubmit =async e =>{
         e.preventDefault();
         console.log(username+' '+password+' '+imgURL)
@@ -42,7 +50,7 @@ const ProfileSetup = () => {
             <h1 className='text-2xl font-semibold'>Setup Your Profile</h1><br/>
             <form className='flex flex-col'>
                 <div className='flex'>
-                    <label style={{color: '#6a666e'}} htmlFor='username' className='font-medium mt-5'>Create or generate Username</label>
+                    <label style={{color: '#6a666e'}} htmlFor='username' className='font-medium mt-5'>Create Username</label>
                     <sup><svg onClick={showModal1} className='w-4 cursor-pointer mt-6 ml-2' id="info-circle" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#0092E4" d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg></sup>
                     <Modal title="Tips" width={1000} open={isModalOpen1} footer={null} onCancel={handleCancel1}>
                         <ul className='list-disc ml-5'>
@@ -53,7 +61,7 @@ const ProfileSetup = () => {
                     </Modal>
                 </div>
                 <input required value={username} onChange={e=>setUsername(e.target.value)} name='username' style={{backgroundColor: '#e9e9e9'}} className='mt-3 border-color font-light text-xm px-2' />
-                <p style={{color: 'green'}} className='mt-5 font-medium'>Username is available</p>
+                {/* <p style={{color: 'green'}} className='mt-5 font-medium'>Username is available</p> */}
                 <label style={{color: '#6a666e'}} htmlFor='password' className='font-medium mt-6'>Password</label>
                 <input required value={password} onChange={e=>setPassword(e.target.value)} name='password' style={{backgroundColor: '#e9e9e9'}} className='mt-3 border-color font-light text-xm px-2' />
                 <p style={{color: '#6a666e'}} className='mt-6 font-medium'>Choose an avatar</p>
@@ -61,7 +69,7 @@ const ProfileSetup = () => {
                 <div  className='flex flex-wrap'>
                     {avatars.map(avatar=>{
                         return (
-                            <img onClick={()=>setImageURL(avatar)} key={avatars.indexOf(avatar)}  className='w-16 mx-5 my-3 cursor-pointer' src={avatar} alt='avatar.png' />
+                            <img onClick={(e)=>{setImageURL(avatar); handleClick(e)}} key={avatars.indexOf(avatar)}  className='avatar rounded-full w-16 mx-5 my-3 cursor-pointer' src={avatar} alt='avatar.png' />
                         )
                     })}
                 </div>

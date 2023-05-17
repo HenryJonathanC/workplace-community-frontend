@@ -59,3 +59,13 @@
 .border-post:focus{
     outline: none;
 }
+
+.border-status{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: #03c5cc;
+    border-bottom-width: .05rem;
+}
+
+
