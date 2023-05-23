@@ -1,4 +1,4 @@
-import { Input, Space } from 'antd'
+import { Input, Space, message } from 'antd'
 import { EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
 import React, { useState } from 'react'
 import axios from 'axios';
@@ -26,6 +26,7 @@ const User = () => {
             console.log("User Logged in successfully")
             dispatch(getUser(res.data))
             navigate('/home')
+            message.success('User Logged in successfully')
           })
           .catch(err => {
             console.log(err.message + " | Wrong username or password")

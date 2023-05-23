@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import { Select } from 'antd';
+import { Select, message } from 'antd';
 import axios from 'axios';
 
-const CreatePost = ({ handleCancel1 }) => {
+const CreatePost = ({ handleCancel1}) => {
   const userData = useSelector(state=>state.userData.user)
   const [image, setImage] = useState(null)
   const [isAddLink, setIsAddLink]= useState(false)
@@ -42,7 +42,7 @@ const CreatePost = ({ handleCancel1 }) => {
 
   const handleSubmit = e =>{
     e.preventDefault();
-    console.log(title + body + hashtags + category + publisher + link + videoLink)
+    // console.log(title + body + hashtags + category + publisher + link + videoLink)
     let userid
     if(publisher==='Anonymous user'){
       userid=null;
@@ -58,15 +58,19 @@ const CreatePost = ({ handleCancel1 }) => {
       "links" : `${link}`,
       "videoLink" : `${videoLink}`
     })
+    .then(res=>{
+      message.success("Posted successfully")      
 
-    setTitle('')
-    setBody('')
-    setHashtags('')
-    setCategory()
-    setPublisher()
-    setLink('')
-    handleCancel1();
-    setVideoLink('')
+      setTitle('')
+      setBody('')
+      setHashtags('')
+      setCategory()
+      setPublisher()
+      setLink('')
+      setVideoLink('')
+      handleCancel1();
+    })
+    .catch(err=>{console.log(err)})
   }    
 
 

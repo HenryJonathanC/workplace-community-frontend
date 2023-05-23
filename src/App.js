@@ -2,16 +2,17 @@ import './App.css';
 import Login from './components/Login';
 import OtpVerification from './components/OtpVerification';
 import ProfileSetup from './components/ProfileSetup';
-import Header from './components/logged in/Header';
+// import Header from './components/logged in/Header';
 import Home from './components/logged in/Home';
+import HomeCategories from './components/logged in/HomeCategories';
 import HomeLeaderboard from './components/logged in/HomeLeaderboard';
 import HomeProfile from './components/logged in/HomeProfile';
 import HomeSettings from './components/logged in/HomeSettings';
 import Invite from './components/logged in/Invite';
-import Leaderboard from './components/logged in/Leaderboard';
-import LeftNavBar from './components/logged in/LeftNavBar';
-import MyFeed from './components/logged in/MyFeed';
-import RightNavBar from './components/logged in/RightNavBar';
+// import Leaderboard from './components/logged in/Leaderboard';
+// import LeftNavBar from './components/logged in/LeftNavBar';
+// import MyFeed from './components/logged in/MyFeed';
+// import RightNavBar from './components/logged in/RightNavBar';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path='/leaderboard' Component={HomeLeaderboard} />
           <Route path='/settings' Component={HomeSettings} />
           <Route path='/my-profile' Component={HomeProfile} />
+          <Route path='/categories/:id' Component={HomeCategories} />
         </Routes>
       </BrowserRouter>
       {/* <Login /> */}

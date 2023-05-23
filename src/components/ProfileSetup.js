@@ -1,4 +1,4 @@
-import { Modal } from 'antd'
+import { Modal, message } from 'antd'
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
@@ -40,6 +40,7 @@ const ProfileSetup = () => {
         }).then(res=>{
             console.log(res.data)
             navigate('/signin')
+            message.success('Successfully created user profile')
         }).catch(err=>console.log(err.message))
     }
 
@@ -63,7 +64,7 @@ const ProfileSetup = () => {
                 <input required value={username} onChange={e=>setUsername(e.target.value)} name='username' style={{backgroundColor: '#e9e9e9'}} className='mt-3 border-color font-light text-xm px-2' />
                 {/* <p style={{color: 'green'}} className='mt-5 font-medium'>Username is available</p> */}
                 <label style={{color: '#6a666e'}} htmlFor='password' className='font-medium mt-6'>Password</label>
-                <input required value={password} onChange={e=>setPassword(e.target.value)} name='password' style={{backgroundColor: '#e9e9e9'}} className='mt-3 border-color font-light text-xm px-2' />
+                <input type='password' required value={password} onChange={e=>setPassword(e.target.value)} name='password' style={{backgroundColor: '#e9e9e9'}} className='mt-3 border-color font-light text-xm px-2' />
                 <p style={{color: '#6a666e'}} className='mt-6 font-medium'>Choose an avatar</p>
                 {/* <img className='w-16' src='https://gmail.loominate.app/static/media/avatar15.43ae6bcb.png' /> */}
                 <div  className='flex flex-wrap'>

@@ -1,10 +1,12 @@
 import React from 'react'
 import Header from './Header'
+import { message } from 'antd'
 
 const Invite = () => {
     
     const copyToClipboard = () =>{
         navigator.clipboard.writeText('https://soombo.loominate.app')
+        message.success('Link copied to clipboard')
     }
 
   return (

@@ -34,7 +34,7 @@
 
 .categories-btn:hover{
   color: white;
-  background-color: #0dcaf0;
+  background-color: #18adca;
 }
 
 .img-radius{
@@ -50,6 +50,13 @@
 .pollNeg{
   box-shadow: inset 5px 5px 10px rgba(18,18,18,.2);
 }
+
+
+.vignette > img{
+  /* display: block; */
+  
+}
+
 
 
 /* .ant-select-selection-search-input{

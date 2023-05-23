@@ -1,4 +1,4 @@
-import { Modal } from 'antd';
+import { Modal, message } from 'antd';
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
@@ -41,6 +41,7 @@ const NewUser = () => {
             console.log(`otp sent successfully to ${email}`)
             dispatch(getEmail(email))
             navigate('/signUp/otp')
+            message.info(`Otp sent successfully to ${email}`)
         }).catch((err)=>console.log(err))
     }
   return (

@@ -77,10 +77,10 @@ const MyFeed = () => {
     axios.get('http://localhost:3001/posts')
     .then(res=>{
       setPostData(res.data)
-      // console.log(postData);
+      console.log(res.data)
     })
     .catch(err=>console.log(err))
-  }, [])
+  },[postData])
 
   return (
     <div style={{flex: .45}} className='ml-8 mt-16'>
@@ -95,6 +95,7 @@ const MyFeed = () => {
       <div className='flex justify-between mt-5'>
         <div className='flex'>
           <h1 style={{backgroundColor: 'white'}} className='mr-2 px-4 py-2 p-5 rounded-md shadow cursor-pointer'>All</h1>
+          <h1 style={{backgroundColor: 'white'}} className='mr-2 px-4 py-2 p-5 rounded-md shadow cursor-pointer'>Posts</h1>
           <h1 style={{backgroundColor: 'white'}} className='mr-2 px-4 py-2 p-5 rounded-md shadow cursor-pointer'>Polls</h1>
           <h1 style={{backgroundColor: 'white'}} className='mr-2 px-4 py-2 p-5 rounded-md shadow cursor-pointer'>Initiatives</h1>
         </div>
@@ -104,11 +105,11 @@ const MyFeed = () => {
                  Recent
                 <svg className='w-5 ml-2 mt-1'  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="angle-down"><path fill="#03c5cc" d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path></svg>
             </button>
-        </Dropdown>
+          </Dropdown>
         </Space>
       </div>
       {/* <Posts /> */}
-      {postData?.map(post=>{
+      {postData?.reverse().map(post=>{
         return (
           <Posts key={post._id} post={post} />
         )

@@ -127,7 +127,7 @@ const RightNavBar = ({flag}) => {
       }
 
   return (
-    <div style={{flex: .32}} className='mt-16 ml-8 mr-5'>
+    <div style={{flex: .32,}} className='mt-16 ml-8 mr-5'>
         <div style={{backgroundColor: 'white'}} className='shadow mr-20 mt-5 p-5 mb-5 rounded-md'>
             <div className='flex mb-6'>
                 <h1 className='uppercase text-xl'>My Coworker Community</h1>
@@ -163,8 +163,7 @@ const RightNavBar = ({flag}) => {
                             </div>
                             <textarea value={status} onChange={e=>setStatus(e.target.value)} rows={4} className='resize-none mt-3 mb-7 border-status py-3 w-full font-normal px-4' placeholder={userData.status? userData.status : 'What is on your mind?'}></textarea>
                             <button onClick={handleUpdate} className='mx-12 py-2 rounded-lg bg-gradient-to-r from-signInActive to-rightBetween cursor-pointer button-color w-full'>SAVE</button> 
-                        </div>
-                            
+                        </div>                            
                     </Modal>
                 </div>    
                 <div className='flex flex-col'>
