@@ -108,8 +108,8 @@ const Posts = ({post}) => {
       ];
     
       const suffix = (
-        <Button 
-          onClick={onclick}
+        <Button
+          onClick={onClick}
           className="text-xs pr-1 "
             style={{
               color: 'white',

@@ -80,7 +80,7 @@ const MyFeed = () => {
       console.log(res.data)
     })
     .catch(err=>console.log(err))
-  },[postData])
+  },[])
 
   return (
     <div style={{flex: .45}} className='ml-8 mt-16'>
@@ -109,7 +109,7 @@ const MyFeed = () => {
         </Space>
       </div>
       {/* <Posts /> */}
-      {postData?.reverse().map(post=>{
+      {postData && [...postData].reverse().map(post=>{
         return (
           <Posts key={post._id} post={post} />
         )
